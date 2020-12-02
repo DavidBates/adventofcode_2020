@@ -22,8 +22,25 @@ passwords.forEach((password) => {
         valid_passwords++
     }
     else{
-        console.error(`password: ${password.password} : doesn't match: ^([^${search_str}]*${search_str}[^${search_str}]*){${password.min},${password.max}}$`)
+        // For debugging
+        // console.log(`password: ${password.password} : doesn't match: ^([^${search_str}]*${search_str}[^${search_str}]*){${password.min},${password.max}}$`)
     }
    
 });
-console.log(valid_passwords)
+console.info(`There are ${valid_passwords} valid passwords for the first portion of day 2`)
+
+// Second portion: 
+valid_passwords = 0
+
+passwords.forEach((password) => {
+ first = password.password.substr(Number(password.min) - 1, password.search_str.length)
+ second = password.password.substr(Number(password.max) - 1, password.search_str.length)
+ pass1 = first === password.search_str
+ pass2 = second === password.search_str
+ if((pass1 || pass2) && !(pass1&&pass2)){
+    valid_passwords++
+ }
+
+});
+console.info(`There are ${valid_passwords} valid passwords for the second portion of day 2`)
+
