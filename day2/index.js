@@ -6,7 +6,6 @@ console.log(`reading values from ${filename}`)
 const passwords = fs.readFileSync(filename).toString().split("\n").map((item) => {
     const parts = item.match(/([0-9]*)-([0-9]*)\s{1}(.*):\s{1}(.*)/)
     if(parts.length == 5){
-        // console.log(parts[3].replace('.', '\\.'))
         return {'min': parts[1], 'max': parts[2], 'search_str':parts[3], 'password':parts[4]}
     }
     else{
@@ -17,20 +16,14 @@ const passwords = fs.readFileSync(filename).toString().split("\n").map((item) =>
 
 var valid_passwords = 0
 passwords.forEach((password) => {
-    // const regex = new RegExp( `(.*${password.search_char.replace('.', '\.')}.*){${password.min},${password.max}}` )
-    const regex = new RegExp( `^([^a]*${password.search_str.replace('\.g', '\\\.')}[^a]*){${password.min},${password.max}}$` )
-    
+    const search_str = password.search_str.replace('\.g', '\\\.')
+    const regex = new RegExp( `^([^${search_str}]*${search_str}[^${search_str}]*){${password.min},${password.max}}$` )
     if(regex.test(password.password)){
         valid_passwords++
     }
     else{
-        console.log(`password: ${password.password} : doesn't match: ^([^a]*${password.search_str}[^a]*){${password.min},${password.max}}$`)
+        console.error(`password: ${password.password} : doesn't match: ^([^${search_str}]*${search_str}[^${search_str}]*){${password.min},${password.max}}$`)
     }
    
 });
 console.log(valid_passwords)
-// password: jbmjjjrcjj : doesn't match: ^([^a]j[^a]*){2,10}$
-// ^([^a]*a[^a]*){3,5}$
-// var regex = !new RegExp(/([0-9]{1})-([0-9]{1}).*?([[:alnum:]]{1}).*/)
-// searchText.match(/([0-9]{1})-([0-9]{1}).*?([[:alnum:]]{1}).*/)
-// searchText.match()
