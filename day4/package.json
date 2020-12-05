@@ -1,5 +1,5 @@
 {
-  "name": "adventofcode_day3",
+  "name": "adventofcode_day4",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,6 @@
   "author": "David Bates",
   "license": "UNLICENSED",
   "dependencies": {
-    "ml-matrix": "^6.5.3"
   },
   "devDependencies": {
     "eslint": "^7.11.0",
