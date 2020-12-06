@@ -38,5 +38,14 @@ const bpasses = fs.readFileSync(filename).toString().split(/\n/).map((item)=>{
 bpasses.sort((a,b)=>(a.seatID > b.seatID)? -1 : 1)
 console.log(`The highest boarding pass for part 1 is: ${bpasses[0].seatID}`)
 
+//Part two
+bpasses.forEach((pass, i, list)=>{
+   
+    if(list[i-1] && !(list[i-1].seatID === pass.seatID + 1)){
+        const empty = pass.seatID + 1
+         console.log(empty)
+    }
+})
+
 
 
