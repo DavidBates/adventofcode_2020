@@ -1,5 +1,5 @@
 # Day 7
-[Advent of code day 6](https://adventofcode.com/2020/day/7)
+[Advent of code day 7](https://adventofcode.com/2020/day/7)
 
 To run this: execute `yarn install` and then `yarn start`
 
